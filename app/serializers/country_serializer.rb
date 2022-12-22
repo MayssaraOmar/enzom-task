@@ -6,7 +6,8 @@ class CountrySerializer
     end
   
     attributes :name,
-               :city_name
+               :code,
+               :iso3
   
     attribute :populations  do |object|
         PopulationSerializer.new(object.populations)

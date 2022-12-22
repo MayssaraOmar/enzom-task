@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'countries/index'
-  get 'countries/show'
+  get 'countries/show_country_data'
   post 'countries/sync'
   post 'countries/init'
   

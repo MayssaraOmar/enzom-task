@@ -56,6 +56,7 @@ gem 'jsonapi-serializer'
 gem 'has_scope'
 # handle number of items in a page
 gem 'will_paginate', '~> 3.1.0'
+gem 'fast_inserter'
 
 
 

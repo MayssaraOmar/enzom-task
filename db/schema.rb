@@ -12,23 +12,22 @@
 
 ActiveRecord::Schema[7.0].define(version: 2022_12_22_122510) do
   create_table "countries", charset: "latin1", force: :cascade do |t|
-    t.string "name", limit: 50, null: false
-    t.string "city_name", limit: 50, null: false
+    t.string "name", limit: 300, null: false
+    t.string "code", limit: 50, null: false
+    t.string "iso3", limit: 50, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name", "city_name"], name: "index_countries_on_name_and_city_name"
     t.index ["name"], name: "index_countries_on_name"
   end
 
   create_table "populations", charset: "latin1", force: :cascade do |t|
     t.integer "country_id", null: false
     t.integer "year", null: false
-    t.integer "count", null: false
-    t.string "sex", limit: 50
-    t.string "reliabilty", limit: 50
+    t.bigint "count", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_populations_on_country_id"
+    t.index ["year"], name: "index_populations_on_year"
   end
 
 end

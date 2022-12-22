@@ -6,7 +6,5 @@ class PopulationSerializer
     end
   
     attributes :year,
-               :count, 
-               :sex, 
-               :reliabilty
+               :count
 end
