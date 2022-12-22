@@ -10,5 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_22_122510) do
+  create_table "countries", charset: "latin1", force: :cascade do |t|
+    t.string "name", limit: 50, null: false
+    t.string "city_name", limit: 50, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "city_name"], name: "index_countries_on_name_and_city_name"
+    t.index ["name"], name: "index_countries_on_name"
+  end
+
+  create_table "populations", charset: "latin1", force: :cascade do |t|
+    t.integer "country_id", null: false
+    t.integer "year", null: false
+    t.integer "count", null: false
+    t.string "sex", limit: 50
+    t.string "reliabilty", limit: 50
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_populations_on_country_id"
+  end
+
 end
