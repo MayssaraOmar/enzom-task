@@ -93,6 +93,9 @@ GEM
     erubi (1.11.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    has_scope (0.8.0)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
@@ -107,6 +110,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jsonapi-serializer (2.2.0)
+      activesupport (>= 4.2)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -231,8 +236,10 @@ DEPENDENCIES
   capybara
   debug
   dotenv
+  has_scope
   importmap-rails
   jbuilder
+  jsonapi-serializer
   mysql2 (~> 0.5)
   puma (~> 5.0)
   rails (~> 7.0.4)

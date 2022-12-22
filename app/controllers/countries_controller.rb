@@ -7,8 +7,8 @@ include ResponseHelper
 
 class CountriesController < ApplicationController
   def index
-    # @countries = Country.all
-    
+    @countries = Country.all
+    render_countries(data: @countries)
   end
 
   def show
@@ -54,5 +54,14 @@ class CountriesController < ApplicationController
       end
 
     end 
+  end
+
+   # render array of country records
+  def render_countries(data: country_data, message: '')
+  
+   render_json(status: :ok, message: message,
+               data: CountrySerializer.new(data)
+              .serializable_hash[:data]
+              .map{|record| record[:attributes]})
   end
 end
