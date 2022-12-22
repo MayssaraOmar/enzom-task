@@ -26,8 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_22_122510) do
     t.bigint "count", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["country_id", "year"], name: "index_populations_on_country_id_and_year"
     t.index ["country_id"], name: "index_populations_on_country_id"
-    t.index ["year"], name: "index_populations_on_year"
   end
 
 end
