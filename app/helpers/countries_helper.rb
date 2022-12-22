@@ -17,7 +17,7 @@ module CountriesHelper
                   .map{|record| record[:attributes]})
     end
     
-    # render array of country records
+    # render one country 
     def render_country(data: country_data, message: '')
       
         render_json(status: :ok, message: message,
