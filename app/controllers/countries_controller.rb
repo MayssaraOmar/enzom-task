@@ -4,10 +4,11 @@ Dotenv.load
 
 include ResponseHelper
 
-
 class CountriesController < ApplicationController
+  before_action :set_paging_parameters ,only: [:index]
+
   def index
-    @countries = Country.all
+    @countries = Country.all.paginate(page: @page_number, per_page: @page_size)
     render_countries(data: @countries)
   end
 
@@ -63,5 +64,12 @@ class CountriesController < ApplicationController
                data: CountrySerializer.new(data)
               .serializable_hash[:data]
               .map{|record| record[:attributes]})
+  end
+
+  def set_paging_parameters
+    @page_number = 1
+    @page_size = 50
+    @page_number = params["page_number"].to_i if params && params["page_number"].present?
+    @page_size =  params["page_size"].to_i if params && params["page_size"].present?
   end
 end
