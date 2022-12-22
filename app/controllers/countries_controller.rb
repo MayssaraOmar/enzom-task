@@ -54,31 +54,6 @@ class CountriesController < ApplicationController
     end
   end
 
-  def x
-    @response =  RestClient.get "https://countriesnow.space/api/v0.1/countries/population", {content_type: :json, accept: :json, "user-key": ENV["API_KEY"]}
-    @data = JSON.parse(@response.body)["data"]
- 
-    @countries = @data.map do |country|
-      puts (country)
-     
-      @new_country = Country.new(:name => country["country"], :code => country["code"], :iso3 => country["iso3"])
-      if !@new_country.save
-        render_error_full_error_messages(@new_country.errors.full_messages, "Saving Country")
-      end
-      @existing_country = Country.find_by(:name=>country["country"])
-      
-      @populations = country["populationCounts"].map do |population|
-        puts (population)
-        @new_population = Population.new(:year => population["year"].to_i, :count => population["value"].to_i)
-        @new_population.country = @existing_country
-        if !@new_population.save
-          render_error_full_error_messages(@new_population.errors.full_messages, "Saving Population")
-        end
-      end
-
-    end
-  end
-
   def init
     @response =  RestClient.get "https://countriesnow.space/api/v0.1/countries/population", {content_type: :json, accept: :json, "user-key": ENV["API_KEY"]}
     @data = JSON.parse(@response.body)["data"]
@@ -115,8 +90,7 @@ class CountriesController < ApplicationController
 
     inserter = FastInserter::Base.new(params)
     inserter.fast_insert
-
-    end
+  end
 
     
     
